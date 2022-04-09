@@ -588,8 +588,13 @@ class Terminator(Borg):
             terminals.extend(win_terminals)
 
         for term in self.get_target_terms(widget):
-            idx = terminals.index(term)
-            term.feed(numstr % (idx + 1))
+            # print('term:', term.get_window_title())
+            if pad == 2:
+                name = term.get_window_title()
+                term.feed(name.encode())
+            else:
+                idx = terminals.index(term)
+                term.feed(numstr.encode() % (idx + 1))
 
     def get_sibling_terms(self, widget):
         termset = []
