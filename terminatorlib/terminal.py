@@ -567,6 +567,10 @@ class Terminal(Gtk.VBox):
 
         menu.append(Gtk.SeparatorMenuItem())
 
+        item = Gtk.MenuItem.new_with_mnemonic(_('_Insert terminal name'))
+        item.connect('activate', lambda x: self.emit('enumerate', 2))
+        menu.append(item)
+
         item = Gtk.MenuItem.new_with_mnemonic(_('_Insert terminal number'))
         item.connect('activate', lambda x: self.emit('enumerate', False))
         menu.append(item)
