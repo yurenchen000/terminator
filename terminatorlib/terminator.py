@@ -581,8 +581,12 @@ class Terminator(Borg):
             terminals.extend(win_terminals)
 
         for term in self.get_target_terms(widget):
-            idx = terminals.index(term)
-            term.feed(numstr.encode() % (idx + 1))
+            if pad == 2:
+                name = term.titlebar.get_custom_string() or term.get_window_title()
+                term.feed(name)
+            else:
+                idx = terminals.index(term)
+                term.feed(numstr % (idx + 1))
 
     def get_sibling_terms(self, widget):
         termset = []
