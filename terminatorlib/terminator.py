@@ -588,9 +588,10 @@ class Terminator(Borg):
             terminals.extend(win_terminals)
 
         for term in self.get_target_terms(widget):
-            # print('term:', term.get_window_title())
+            # print('term:', term.get_window_title(), term.titlebar.get_custom_string())
             if pad == 2:
-                name = term.get_window_title()
+                # name = term.get_window_title()
+                name = term.titlebar.get_custom_string() or term.get_window_title()
                 term.feed(name.encode())
             else:
                 idx = terminals.index(term)
